@@ -1,0 +1,1 @@
+web: ./build/install/products-api/bin/products-api

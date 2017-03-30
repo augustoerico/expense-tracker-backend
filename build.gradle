@@ -1,0 +1,33 @@
+group 'io.github.augustoerico'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'io.github.augustoerico.Application'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Vertx + MongoDB REST boilerplate',
+                'Implementation-Version': version
+    }
+}
+
+dependencies {
+    // Vertx
+    compile 'io.vertx:vertx-core:3.3.+'
+    compile 'io.vertx:vertx-web:3.0.+'
+    compile 'io.vertx:vertx-mongo-client:3.1.+'
+
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+
+    // Spock
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-3'
+}
+
+// Task for deploy using Heroku
+task stage(dependsOn: ['clean', 'installDist'])
