@@ -2,6 +2,7 @@ package io.github.augustoerico.models
 
 import io.github.augustoerico.models.enums.AccountType
 import io.github.augustoerico.config.Env
+import io.vertx.core.json.JsonObject
 
 class Account {
 
@@ -28,4 +29,7 @@ class Account {
 
     }
 
+    def asJson() {
+        new JsonObject([username: username, password: password, type: type])
+    }
 }

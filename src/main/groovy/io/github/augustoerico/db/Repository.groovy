@@ -12,7 +12,7 @@ class Repository {
 
     MongoClient client
 
-    private Repository(MongoClient client) {
+    Repository(MongoClient client) {
         this.client = client
     }
 
@@ -26,8 +26,8 @@ class Repository {
         instance
     }
 
-    def save(String collection, JsonObject json, Handler handler) {
-        client.save(collection, json, handler)
+    def save(String collection, Map obj, Handler handler) {
+        client.save(collection, new JsonObject(obj), handler)
         this
     }
 
@@ -37,8 +37,8 @@ class Repository {
     }
 
     def findOne(String collection, String id, Handler handler) {
-        def query = new JsonObject().put('_id', id)
-        client.findOne(collection, query, new JsonObject(), handler)
+        def query = [_id: id]
+        client.findOne(collection, new JsonObject(query), new JsonObject(), handler)
     }
 
 }
