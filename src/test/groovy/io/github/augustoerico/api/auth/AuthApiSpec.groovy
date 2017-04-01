@@ -14,7 +14,9 @@ import spock.lang.Specification
 
 abstract class AuthApiSpec extends Specification {
 
+    @Shared
     Vertx vertx
+    @Shared
     MongodExecutable executable
 
     @Shared
@@ -22,7 +24,7 @@ abstract class AuthApiSpec extends Specification {
     @Shared
     Repository repository
 
-    def setup() {
+    def setupSpec() {
         vertx = Vertx.vertx()
 
         TestHelper.setupServer(vertx)
@@ -38,11 +40,14 @@ abstract class AuthApiSpec extends Specification {
         setupContext()
     }
 
-    def cleanup() {
+    def cleanupSpec() {
         executable.stop()
         vertx.close()
     }
 
+    /**
+     * Shortcut to populate the database
+     */
     def load() {
         def accounts = Fixture.ACCOUNTS.collect {
             new Account(it).asJson()
