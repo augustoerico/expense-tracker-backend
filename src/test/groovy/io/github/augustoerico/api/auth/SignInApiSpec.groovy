@@ -23,7 +23,7 @@ class SignInApiSpec extends AuthApiSpec {
 
         then:
         data
-        data.token ==~ /^.{157}=$/
+        data.token ==~ /^.+=$/
 
     }
 
@@ -38,7 +38,6 @@ class SignInApiSpec extends AuthApiSpec {
         then:
         def ex = thrown(HttpResponseException)
         ex.statusCode == HttpStatus.SC_UNPROCESSABLE_ENTITY
-        ex.message == 'Wrong username/password combination'
     }
 
 }
