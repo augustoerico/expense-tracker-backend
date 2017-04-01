@@ -24,7 +24,15 @@ dependencies {
     compile 'io.vertx:vertx-mongo-client:3.1.+'
     compile 'io.vertx:vertx-auth-jwt:3.4.+'
 
+    // Groovy
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
+
+
+    // API Spec
+    testCompile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7'
+
+    // Embedded MongoDB
+    testCompile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0'
 
     // Spock
     testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-3'
