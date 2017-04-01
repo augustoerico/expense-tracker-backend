@@ -1,6 +1,6 @@
 package io.github.augustoerico.models
 
-import io.github.augustoerico.auth.enums.AccountType
+import io.github.augustoerico.models.enums.AccountType
 import io.github.augustoerico.config.Env
 
 class Account {
