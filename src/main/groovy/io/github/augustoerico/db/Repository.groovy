@@ -26,8 +26,8 @@ class Repository {
         instance
     }
 
-    def save(String collection, Map obj, Handler handler) {
-        client.save(collection, new JsonObject(obj), handler)
+    def save(String collection, JsonObject obj, Handler handler) {
+        client.save(collection, obj, handler)
         this
     }
 

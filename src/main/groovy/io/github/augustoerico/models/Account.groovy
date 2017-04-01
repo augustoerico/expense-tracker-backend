@@ -3,9 +3,12 @@ package io.github.augustoerico.models
 import io.github.augustoerico.models.enums.AccountType
 import io.github.augustoerico.config.Env
 import io.vertx.core.json.JsonObject
+import io.vertx.core.logging.Logger
+import io.vertx.core.logging.LoggerFactory
 
 class Account {
 
+    def _id
     def username
     def password
     def type
@@ -19,7 +22,7 @@ class Account {
                 AccountType.ADMIN.name() : AccountType.REGULAR.name()
     }
 
-    def validate(Map map) {
+    static validate(Map map) {
 
         if (!map.username) {
             throw new RuntimeException('username not provided')
@@ -30,6 +33,8 @@ class Account {
     }
 
     def asJson() {
-        new JsonObject([username: username, password: password, type: type])
+        def obj = [username: username, password: password, type: type] +
+                (_id ? [_id: _id] : [:])
+        new JsonObject(obj)
     }
 }
