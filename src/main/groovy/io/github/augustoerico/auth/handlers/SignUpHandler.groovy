@@ -20,7 +20,7 @@ class SignUpHandler {
     }
 
     def handle = { RoutingContext context ->
-        LOGGER.info "[GET] ${context.normalisedPath()}"
+        LOGGER.info "[POST] ${context.normalisedPath()}"
 
         def response = context.response()
         def account = new Account(context.getBodyAsJson().map)
