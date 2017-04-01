@@ -1,4 +1,4 @@
-package io.github.augustoerico.api
+package io.github.augustoerico.api.health
 
 import io.github.augustoerico.Application
 import io.github.augustoerico.config.Env
