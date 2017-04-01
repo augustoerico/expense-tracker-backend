@@ -6,6 +6,8 @@ import java.math.RoundingMode
 
 class Expense {
 
+    static final DATETIME_UTC_REGEX = /^\d{4}(-\d{2}){2}T(\d{2}:){2}\d{2}Z$/
+
     def _id
     def account_id
     def description
@@ -20,7 +22,8 @@ class Expense {
         this.description = data.description
 
         this.amount = new BigDecimal(data.amount ?: 0).setScale(2, RoundingMode.HALF_UP)
-        this.datetime = new Date().format('yyyy-MM-dd\'T\'HH:mm:ssXXX', TimeZone.getTimeZone('UTC'))
+        this.datetime = data.datetime ?:
+                new Date().format('yyyy-MM-dd\'T\'HH:mm:ssXXX', TimeZone.getTimeZone('UTC'))
     }
 
     static validate(data) {
@@ -34,6 +37,9 @@ class Expense {
         } else if (!(data.amount in Number)) {
             errorMessages << '\'amount\' must be a number'
         }
+        if (data.datetime && !(data.datetime.toUpperCase() ==~ DATETIME_UTC_REGEX)) {
+            errorMessages << '\'datetime\' must be on UTC format'
+        }
 
         if (errorMessages) {
             throw new RuntimeException("Error messages: $errorMessages")
@@ -45,4 +51,5 @@ class Expense {
                 (_id ? [_id: _id] : [:])
         new JsonObject(obj)
     }
+
 }
