@@ -31,6 +31,10 @@ class Repository {
         this
     }
 
+    def find(String collection, JsonObject query, Handler handler) {
+        client.find(collection, query, handler)
+    }
+
     def find(String collection, Handler handler) {
         client.find(collection, new JsonObject(), handler)
         this
