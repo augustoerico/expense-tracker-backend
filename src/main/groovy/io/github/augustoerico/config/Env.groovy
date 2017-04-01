@@ -15,6 +15,26 @@ class Env {
     }
 
     /**
+     * Authentication & Authorisation
+     */
+    static keystore() {
+        // 1. Create keystore file:
+        //      keytool -genseckey -keystore keystore.jceks -storetype jceks \
+        //          -storepass <password> -keyalg HMacSHA256 -keysize 2048 -alias HS256 -keypass <password>
+        // 2. Place keystore file in src/main/resources
+        System.getenv().KEYSTORE ?: 'keystore.jceks::jceks'
+    }
+
+    static keystorePassword() {
+        System.getenv().KEYSTORE_PASSWORD ?: 'expense-tracker-password'
+    }
+
+    static authProviderConfig() {
+        def keyStore = keystore().split('::')
+        [keyStore: [path: keyStore[0], type: keyStore[1], password: keystorePassword()]]
+    }
+
+    /**
      * Mongo DB
      */
     static mongoDbUri() {
