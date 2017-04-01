@@ -7,8 +7,7 @@ class SignUpApiSpec extends AuthApiSpec{
     static final PATH = '/sign_up'
 
     def setupContext() {
-        // Create 2 entries in DB
-        load()
+        // not used for these tests
     }
 
     def 'Should create a new regular account'() {
@@ -25,9 +24,9 @@ class SignUpApiSpec extends AuthApiSpec{
 
         and:
         data
-        data.id
+        data._id
         data.username == 'guto'
-        data.password ==~ /\.{44}=/
+        data.password ==~ /^.{43}=$/
         data.type == 'REGULAR'
 
     }
@@ -35,7 +34,7 @@ class SignUpApiSpec extends AuthApiSpec{
     def 'Should create a new admin account'() {
 
         given:
-        def body = [username: 'guto', password: 'guto-password', type: 'admin']
+        def body = [username: 'kiko', password: 'kiko-password', type: 'admin']
 
         when:
         def response = restClient.post path: PATH, body: body
@@ -46,9 +45,9 @@ class SignUpApiSpec extends AuthApiSpec{
 
         and:
         data
-        data.id
-        data.username == 'guto'
-        data.password ==~ /\.{44}=/
+        data._id
+        data.username == 'kiko'
+        data.password ==~ /^.{43}=$/
         data.type == 'ADMIN'
 
     }
