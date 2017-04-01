@@ -1,4 +1,4 @@
-package io.github.augustoerico.api
+package io.github.augustoerico.api.loader
 
 import io.github.augustoerico.db.Repository
 import io.vertx.core.Future
@@ -13,6 +13,8 @@ class Loader {
     Vertx vertx
     String collection
     List<JsonObject> items
+
+    Loader() { }
 
     private Loader(Vertx vertx) {
         this.vertx = vertx
@@ -36,8 +38,8 @@ class Loader {
         def atomic = new AtomicInteger()
         def async = new AsyncConditions()
         items.collect {
-
             Repository.create(vertx).client.insert(collection, it) { Future future ->
+
                 if (future.succeeded()) {
                     atomic.incrementAndGet()
                     if (atomic.get() == items.size()) {
@@ -46,8 +48,8 @@ class Loader {
                 } else {
                     future.cause().printStackTrace()
                 }
-            }
 
+            }
         }
         async.await(5.0)
     }
