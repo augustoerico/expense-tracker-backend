@@ -37,4 +37,15 @@ class PasswordHashUnitSpec extends Specification {
 
     }
 
+    def 'Should generate the same hash'() {
+
+        when:
+        def hash1 = new PasswordHash('password').hash
+        def hash2 = new PasswordHash('password').hash
+
+        then:
+        hash1 == hash2
+
+    }
+
 }
