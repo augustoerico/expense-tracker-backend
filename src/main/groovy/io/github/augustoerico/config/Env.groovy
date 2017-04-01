@@ -65,6 +65,10 @@ class Env {
         System.getenv().ACCOUNTS_COLLECTION ?: 'ACCOUNTS'
     }
 
+    static expensesCollection() {
+        System.getenv().EXPENSES_COLLECTION ?: 'EXPENSES'
+    }
+
     /**
      * App defaults
      */
