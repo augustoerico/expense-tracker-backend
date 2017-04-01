@@ -14,6 +14,10 @@ class Env {
         System.getenv().ADDRESS ?: '0.0.0.0'
     }
 
+    static appUrl() {
+        "http://${address()}:${port()}"
+    }
+
     /**
      * Authentication & Authorisation
      */
@@ -37,12 +41,28 @@ class Env {
     /**
      * Mongo DB
      */
+    static mongoDbHost() {
+        System.getenv().MONGO_DB_HOST ?: '127.0.0.1'
+    }
+
+    static mongoDbPort() {
+        def port = System.getenv().MONGO_DB_PORT ?: '12345'
+        Integer.parseInt(port)
+    }
+
     static mongoDbUri() {
-        System.getenv().MONGO_DB_URI ?: 'your-connection-uri'
+        System.getenv().MONGO_DB_URI ?: "mongodb://${mongoDbHost()}:${mongoDbPort()}"
     }
 
     static mongoDbName() {
         System.getenv().MONGO_DB_NAME ?: 'db-name'
+    }
+
+    /**
+     * Repositories
+     */
+    static accountsCollection() {
+        System.getenv().ACCOUNTS_COLLECTION ?: 'ACCOUNTS'
     }
 
     /**
