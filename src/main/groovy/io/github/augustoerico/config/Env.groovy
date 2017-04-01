@@ -2,6 +2,9 @@ package io.github.augustoerico.config
 
 class Env {
 
+    /**
+     * Infrastructure
+     */
     static port() {
         def port = System.getenv().PORT ?: '3000'
         Integer.parseInt(port)
@@ -20,6 +23,19 @@ class Env {
 
     static mongoDbName() {
         System.getenv().MONGO_DB_NAME ?: 'db-name'
+    }
+
+    /**
+     * App defaults
+     */
+    static usernameSize() {
+        def usernameSize = System.getenv().USERNAME_SIZE ?: '3'
+        Integer.parseInt(usernameSize)
+    }
+
+    static passwordSize() {
+        def passwordSize = System.getenv().PASSWORD_SIZE ?: '6'
+        Integer.parseInt(passwordSize)
     }
 
     /**
