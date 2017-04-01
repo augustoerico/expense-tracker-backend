@@ -7,7 +7,8 @@ class SignInApiSpec extends AuthApiSpec {
 
     static final PATH = '/sign_in'
 
-    def setupContext() {
+    @Override
+    def setupContextSpec() {
         // load fixtures to database
         load()
     }

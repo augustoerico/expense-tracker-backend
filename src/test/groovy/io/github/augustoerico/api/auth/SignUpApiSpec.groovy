@@ -6,10 +6,6 @@ class SignUpApiSpec extends AuthApiSpec{
 
     static final PATH = '/sign_up'
 
-    def setupContext() {
-        // not used for these tests
-    }
-
     def 'Should create a new regular account'() {
 
         given:
