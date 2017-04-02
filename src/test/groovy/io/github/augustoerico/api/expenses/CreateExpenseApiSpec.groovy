@@ -12,6 +12,7 @@ class CreateExpenseApiSpec extends AuthenticatedApiSpec {
     @Override
     def setupContextSpec() {
         this.populate()
+        super.setupContextSpec()
     }
 
     def 'Should create an expense entry'() {
