@@ -2,9 +2,7 @@ package io.github.augustoerico.api.expenses
 
 import io.github.augustoerico.api.AuthenticatedApiSpec
 import org.apache.http.HttpStatus
-import spock.lang.Stepwise
 
-@Stepwise
 class CreateExpenseApiSpec extends AuthenticatedApiSpec {
 
     static final DESCRIPTION = 'Item description'
