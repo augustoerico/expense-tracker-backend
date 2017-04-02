@@ -55,8 +55,9 @@ class SignInHandler {
             }
         } else {
             def ex = future.cause()
-            LOGGER.error ex
-            response.setStatusCode(500).end(new JsonObject([message: ex.message]).encodePrettily())
+            LOGGER.error ex.message, ex
+            def json = new JsonObject([message: ex.message]).encodePrettily()
+            response.setStatusCode(500).end(json)
         }
 
     }

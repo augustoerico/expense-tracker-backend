@@ -36,8 +36,8 @@ class SignUpHandler {
             response.setStatusCode(201).end(account.asJson().encodePrettily())
         } else {
             def ex = future.cause()
-            LOGGER.error ex
-            def json = new JsonObject().put('message', ex.message)
+            LOGGER.error ex.message, ex
+            def json = new JsonObject([message: ex.message]).encodePrettily()
             response.setStatusCode(500).end(json)
         }
 
