@@ -33,6 +33,7 @@ class Repository {
 
     def find(String collection, JsonObject query, Handler handler) {
         client.find(collection, query, handler)
+        this
     }
 
     def find(String collection, Handler handler) {
@@ -43,6 +44,7 @@ class Repository {
     def findOne(String collection, String id, Handler handler) {
         def query = [_id: id]
         client.findOne(collection, new JsonObject(query), new JsonObject(), handler)
+        this
     }
 
 }
