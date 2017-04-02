@@ -30,7 +30,7 @@ class AdminListExpensesHandler {
     def handleResult = { Future future ->
         if (future.succeeded()) {
             def result = future.result()*.encodePrettily()
-            response.setStatusCode(200).end(result)
+            response.setStatusCode(200).end(result as String)
         } else {
             def ex = future.cause()
             LOGGER.error ex.message, ex

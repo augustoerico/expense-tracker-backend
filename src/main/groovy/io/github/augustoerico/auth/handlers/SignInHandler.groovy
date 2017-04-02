@@ -45,7 +45,9 @@ class SignInHandler {
         if (future.succeeded()) {
             def result = (future.result() as List<JsonObject>).map
             if (result) {
-                def token = jwtAuthProvider.generateToken(result.first(), [:])
+                def userInfo = result.first()
+                def permissions = [userInfo.type.toLowerCase()]
+                def token = jwtAuthProvider.generateToken(userInfo, [permissions: permissions])
                 response.setStatusCode(201).end(new JsonObject([token: token]).encodePrettily())
             } else {
                 def message = 'Wrong username/password combination'

@@ -1,5 +1,6 @@
 package io.github.augustoerico.admin
 
+import io.github.augustoerico.admin.handlers.AdminListExpensesHandler
 import io.vertx.ext.auth.jwt.JWTAuth
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.handler.JWTAuthHandler
@@ -24,6 +25,7 @@ class AdminRouter {
                     .addAuthority('admin').&handle
 
         router.get('/admin/expenses')
+                .handler AdminListExpensesHandler.create().handle
     }
 
 }
