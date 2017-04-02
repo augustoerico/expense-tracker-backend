@@ -16,6 +16,7 @@ class Account {
     Account(Map map) {
         validate(map)
 
+        _id = map._id
         username = map.username
         password = new PasswordHash(map.password as String).hash
         type = (map.type ?: '').equalsIgnoreCase(AccountType.ADMIN.name()) ?
