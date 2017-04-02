@@ -19,7 +19,7 @@ class UpdateExpenseApiSpec extends AuthenticatedApiSpec {
     def 'Should update an expense entry'() {
 
         given:
-        def expenseId = '1'
+        def expenseId = '1' // it belongs to logged user
 
         when:
         def response = restClient.put path: "/expenses/$expenseId", body: BODY
@@ -41,7 +41,7 @@ class UpdateExpenseApiSpec extends AuthenticatedApiSpec {
     def 'Should not update an expense that does not belong to logged user'() {
 
         given:
-        def expenseId = '3'
+        def expenseId = '3' // it does not belong to logged user
 
         when:
         restClient.put path: "/expenses/$expenseId", body: BODY
