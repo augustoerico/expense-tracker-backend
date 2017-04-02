@@ -1,6 +1,7 @@
 package io.github.augustoerico.expenses
 
 import io.github.augustoerico.expenses.handlers.CreateExpenseHandler
+import io.github.augustoerico.expenses.handlers.UpdateExpenseHandler
 import io.vertx.ext.auth.jwt.JWTAuth
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.handler.JWTAuthHandler
@@ -20,11 +21,13 @@ class ExpensesRouter {
     }
 
     def route() {
-
         router.route('/expenses/*')
                 .handler JWTAuthHandler.create(jwtAuthProvider).&handle
+
         router.post('/expenses')
                 .handler CreateExpenseHandler.create().handle
+        router.put('/expenses/:expenseId')
+                .handler UpdateExpenseHandler.create().handle
     }
 
 }
