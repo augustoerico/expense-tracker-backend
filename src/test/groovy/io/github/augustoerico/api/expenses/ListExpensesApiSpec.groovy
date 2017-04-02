@@ -15,7 +15,7 @@ class ListExpensesApiSpec extends AuthenticatedApiSpec {
 
         when:
         def response = restClient.get path: '/expenses'
-        def data = response.reponseData
+        def data = response.responseData
 
         then:
         response.status == HttpStatus.SC_OK
