@@ -4,7 +4,8 @@ class Fixture {
 
     static final ACCOUNTS = [
             [_id: '1', username: 'erico', password: 'erico-password'],
-            [_id: '2', username: 'kiko', password: 'kiko-password']
+            [_id: '2', username: 'kiko', password: 'kiko-password'],
+            [_id: '3', username: 'admin', password: 'admin-password', type: 'ADMIN']
     ]
 
     static final EXPENSES = [

@@ -2,9 +2,11 @@ package io.github.augustoerico.api
 
 class AuthenticatedApiSpec extends ApiSpec {
 
+    def credentials = [username: 'erico', password: 'erico-password']
+
     @Override
     def setupContextSpec() {
-        def body = [username: 'erico', password: 'erico-password']
+        def body = credentials
         def response = restClient.post path: '/sign_in', body: body
 
         def token = response.responseData?.token
