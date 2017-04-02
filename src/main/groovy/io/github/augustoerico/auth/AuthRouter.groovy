@@ -17,13 +17,11 @@ class AuthRouter {
         this.authProvider = authProvider
     }
 
-    static create(Router router, AuthProvider authProvider) {
+    static create(Router router, JWTAuth authProvider) {
         new AuthRouter(router, authProvider)
     }
 
     def route() {
-
-        router.route().handler BodyHandler.create()
 
         router.post('/sign_up').handler SignUpHandler.create().handle
         router.post('/sign_in').handler SignInHandler.create(authProvider).handle
