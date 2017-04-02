@@ -12,7 +12,7 @@ mainClassName = 'io.github.augustoerico.Application'
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Vertx + MongoDB REST boilerplate',
+        attributes 'Implementation-Title': 'Expenses Tracker Backend',
                 'Implementation-Version': version
     }
 }

@@ -1,1 +1,1 @@
-web: ./build/install/products-api/bin/products-api
+web: ./build/install/expense-tracker-backend/bin/expense-tracker-backend
