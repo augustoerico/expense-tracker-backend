@@ -1,5 +1,6 @@
 package io.github.augustoerico
 
+import io.github.augustoerico.admin.AdminRouter
 import io.github.augustoerico.auth.AuthRouter
 import io.github.augustoerico.config.Env
 import io.github.augustoerico.expenses.ExpensesRouter
@@ -58,6 +59,7 @@ class ServerVerticle extends AbstractVerticle {
         HealthRouter.create(router).route()
         AuthRouter.create(router, authProvider).route()
         ExpensesRouter.create(router, authProvider).route()
+        AdminRouter.create(router, authProvider).route()
     }
 
 }
