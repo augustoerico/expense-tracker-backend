@@ -1,16 +1,17 @@
 package io.github.augustoerico.api.auth
 
 import groovyx.net.http.HttpResponseException
+import io.github.augustoerico.api.ApiSpec
 import org.apache.http.HttpStatus
 
-class SignInApiSpec extends AuthApiSpec {
+class SignInApiSpec extends ApiSpec {
 
     static final PATH = '/sign_in'
 
     @Override
     def setupContextSpec() {
         // load fixtures to database
-        load()
+        this.populate()
     }
 
     def 'Should authenticate the user and return a token'() {

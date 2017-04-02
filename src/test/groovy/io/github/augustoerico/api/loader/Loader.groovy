@@ -1,5 +1,6 @@
 package io.github.augustoerico.api.loader
 
+import io.github.augustoerico.config.Env
 import io.github.augustoerico.db.Repository
 import io.vertx.core.Future
 import io.vertx.core.Vertx
@@ -51,7 +52,7 @@ class Loader {
 
             }
         }
-        async.await(5.0)
+        async.await(Env.testWaitTime())
     }
 
 }

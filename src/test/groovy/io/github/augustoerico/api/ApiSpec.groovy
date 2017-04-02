@@ -2,6 +2,8 @@ package io.github.augustoerico.api
 
 import de.flapdoodle.embed.mongo.MongodExecutable
 import groovyx.net.http.RESTClient
+import io.github.augustoerico.api.loader.AccountsLoader
+import io.github.augustoerico.api.loader.ExpensesLoader
 import io.github.augustoerico.config.Env
 import io.github.augustoerico.db.Repository
 import io.vertx.core.Vertx
@@ -39,6 +41,11 @@ class ApiSpec extends Specification {
     def cleanupSpec() {
         executable.stop()
         vertx.close()
+    }
+
+    def populate() {
+        AccountsLoader.create(vertx).load()
+        ExpensesLoader.create(vertx).load()
     }
 
     /**

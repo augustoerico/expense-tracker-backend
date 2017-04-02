@@ -47,7 +47,7 @@ class Expense {
     }
 
     def asJson() {
-        def obj = [account_id: account_id, description: description, amount: amount, datetime: datetime] +
+        def obj = [account_id: account_id, description: description, amount: amount.toDouble(), datetime: datetime] +
                 (_id ? [_id: _id] : [:])
         new JsonObject(obj)
     }
