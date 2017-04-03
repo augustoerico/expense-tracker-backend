@@ -2,7 +2,7 @@
 
 ## Description
 
-This is the backend application for the project Expense Tracker. Refer to [Expense Tracker - Frontend]() for complementary information.
+This is the backend application for the project Expense Tracker. Refer to [Expense Tracker - Frontend](https://github.com/augustoerico/expense-tracker-frontend) for complementary information.
 
 ## TODO
 
@@ -56,3 +56,9 @@ Path                | Method    | Arguments | Description
 ```bash ./gradle clean run```
 
 The application will run on `http://localhost:3000`
+
+### Hosted app
+
+May be unavailable due hosting limitations
+
+`https://expenses-tracker-backend.herokuapp.com`
