@@ -23,8 +23,10 @@ class AuthRouter {
 
     def route() {
 
-        router.post('/sign_up').handler SignUpHandler.create().handle
-        router.post('/sign_in').handler SignInHandler.create(authProvider).handle
+        router.post('/sign_up').consumes('application/json').produces('application/json')
+                .handler SignUpHandler.create().handle
+        router.post('/sign_in').consumes('application/json').produces('application/json')
+                .handler SignInHandler.create(authProvider).handle
 
     }
 
