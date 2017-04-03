@@ -48,7 +48,7 @@ class SignInHandler {
                 def userInfo = result.first()
                 def permissions = [userInfo.type.toLowerCase()]
                 def token = jwtAuthProvider.generateToken(userInfo, [permissions: permissions])
-                response.setStatusCode(201).end(new JsonObject([token: token]).encodePrettily())
+                response.setStatusCode(201).end(new JsonObject([token: "Bearer $token".toString()]).encodePrettily())
             } else {
                 def message = 'Wrong username/password combination'
                 response.setStatusCode(422).end(new JsonObject([message: message]).encodePrettily())
