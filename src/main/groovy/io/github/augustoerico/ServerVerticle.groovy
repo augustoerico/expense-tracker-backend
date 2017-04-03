@@ -29,8 +29,11 @@ class ServerVerticle extends AbstractVerticle {
         def cors = CorsHandler.create('*')
                 .allowedMethod(HttpMethod.GET)
                 .allowedMethod(HttpMethod.POST)
+                .allowedMethod(HttpMethod.PUT)
+                .allowedMethod(HttpMethod.DELETE)
                 .allowedMethod(HttpMethod.OPTIONS)
                 .allowedHeader('Content-Type')
+                .allowedHeader('Authorization')
         router.route().handler(cors)
 
         registerAppRoutes()
