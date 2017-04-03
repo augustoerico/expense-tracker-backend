@@ -25,7 +25,7 @@ class SignInApiSpec extends ApiSpec {
 
         then:
         data
-        data.token ==~ /^.+=$/
+        data.token ==~ /^Bearer .+=$/
 
     }
 
