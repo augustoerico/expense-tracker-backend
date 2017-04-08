@@ -1,42 +1,21 @@
 package io.github.augustoerico.api.health
 
-import io.github.augustoerico.Application
-import io.github.augustoerico.config.Env
-import io.vertx.core.Vertx
-import io.vertx.core.http.HttpClient
-import spock.lang.Shared
-import spock.lang.Specification
-import spock.util.concurrent.AsyncConditions
+import io.github.augustoerico.api.ApiSpec
+import org.apache.http.HttpStatus
 
-class HealthApiSpec extends Specification {
+class HealthApiSpec extends ApiSpec {
 
-    @Shared
-    HttpClient client
-
-    def setupServer() {
-        Application.main()
-        Thread.sleep(1000)
-    }
-
-    def setup() {
-        setupServer()
-        Vertx vertx = Vertx.vertx()
-        client = vertx.createHttpClient()
+    def cleanupSpec() {
+        restClient.shutdown()
     }
 
     def 'Should get server health'() {
-        def async = new AsyncConditions()
 
         when:
-        client.get(3000, 'localhost', '/health') { response ->
-            if (response.statusCode() == 200) {
-                async.evaluate { true }
-            }
-        }
-        .end()
+        def response = restClient.get path: '/health'
 
         then:
-        async.await(Env.testWaitTime())
+        response.status == HttpStatus.SC_OK
 
     }
 
