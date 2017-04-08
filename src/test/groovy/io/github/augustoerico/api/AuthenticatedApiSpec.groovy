@@ -1,18 +1,14 @@
 package io.github.augustoerico.api
 
-class AuthenticatedApiSpec extends ApiSpec {
+abstract class AuthenticatedApiSpec extends ApiSpec {
 
-    def credentials = [username: 'erico', password: 'erico-password']
+    static final String TOKEN = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiIxIiwidXNlcm5hbWUiOiJlcmljbyIs' +
+            'InBhc3N3b3JkIjoiaFdaY2RGaVBvNjl1bTNaQUhHQURENnpsTm1XeGlpTHVHU090aEs2Y3ZIST0iLCJ0eXBlIjoiUkVHVUxBUiIsInBl' +
+            'cm1pc3Npb25zIjpbInJlZ3VsYXIiXSwiaWF0IjoxNDkxNjY1MzM2fQ==.aQpKRgaws_CKBoKmJ2O6JphpzkUcRuYWRsda_A_4QrM='
 
     @Override
     def setupContextSpec() {
-        def body = credentials
-        def response = restClient.post path: '/sign_in', body: body
-
-        def token = response.responseData?.token
-        assert token
-
-        restClient.setHeaders([Authorization: "Bearer $token"])
+        restClient.setHeaders([Authorization: TOKEN])
     }
 
 }
