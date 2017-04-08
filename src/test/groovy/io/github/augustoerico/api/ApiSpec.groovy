@@ -10,7 +10,7 @@ import io.vertx.core.Vertx
 import spock.lang.Shared
 import spock.lang.Specification
 
-class ApiSpec extends Specification {
+abstract class ApiSpec extends Specification {
 
     @Shared
     Vertx vertx
@@ -36,11 +36,15 @@ class ApiSpec extends Specification {
         restClient.setContentType('application/json')
 
         setupContextSpec()
+
     }
 
     def cleanupSpec() {
-        executable.stop()
-        vertx.close()
+        vertx.close {
+            println 'vertx closed'
+            executable.stop()
+            restClient.shutdown()
+        }
     }
 
     def populate() {
