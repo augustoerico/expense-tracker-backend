@@ -28,7 +28,7 @@ class TestHelper {
         int port = Env.mongoDbPort()
 
         IMongodConfig mongodConfig = new MongodConfigBuilder()
-                .version(Version.Main.PRODUCTION)
+                .version(Version.Main.DEVELOPMENT)
                 .net(new Net(bindIp, port, Network.localhostIsIPv6()))
                 .build()
 
