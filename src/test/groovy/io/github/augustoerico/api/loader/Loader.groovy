@@ -38,6 +38,7 @@ class Loader {
     def load() {
         def atomic = new AtomicInteger()
         def async = new AsyncConditions()
+
         items.collect {
             Repository.create(vertx).client.insert(collection, it) { Future future ->
 

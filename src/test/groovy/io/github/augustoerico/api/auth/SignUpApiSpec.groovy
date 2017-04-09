@@ -3,7 +3,7 @@ package io.github.augustoerico.api.auth
 import io.github.augustoerico.api.ApiSpec
 import org.apache.http.HttpStatus
 
-class SignUpApiSpec extends ApiSpec{
+class SignUpApiSpec extends ApiSpec {
 
     static final PATH = '/sign_up'
 
