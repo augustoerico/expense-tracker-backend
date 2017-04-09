@@ -2,15 +2,16 @@ package io.github.augustoerico.api
 
 import de.flapdoodle.embed.mongo.MongodExecutable
 import groovyx.net.http.RESTClient
-import io.github.augustoerico.api.loader.AccountsLoader
-import io.github.augustoerico.api.loader.ExpensesLoader
+import io.github.augustoerico.api.utils.loader.AccountsLoader
+import io.github.augustoerico.api.utils.loader.ExpensesLoader
+import io.github.augustoerico.api.utils.TestUtils
 import io.github.augustoerico.config.Env
 import io.github.augustoerico.db.Repository
 import io.vertx.core.Vertx
 import spock.lang.Shared
 import spock.lang.Specification
 
-class ApiSpec extends Specification {
+abstract class ApiSpec extends Specification {
 
     @Shared
     Vertx vertx
@@ -25,9 +26,9 @@ class ApiSpec extends Specification {
     def setupSpec() {
         vertx = Vertx.vertx()
 
-        TestHelper.setupServer(vertx)
+        TestUtils.setupServer(vertx)
 
-        executable = TestHelper.getMongodExecutable()
+        executable = TestUtils.getMongodExecutable()
         executable.start()
 
         repository = Repository.create(vertx).getInstance()
@@ -35,12 +36,16 @@ class ApiSpec extends Specification {
         restClient = new RESTClient(Env.appUrl())
         restClient.setContentType('application/json')
 
-        setupContextSpec()
+        runBefore()
+
     }
 
     def cleanupSpec() {
-        executable.stop()
-        vertx.close()
+        vertx.close {
+            println 'vertx closed'
+            executable.stop()
+            restClient.shutdown()
+        }
     }
 
     def populate() {
@@ -51,6 +56,6 @@ class ApiSpec extends Specification {
     /**
      * Override to add behavior to setupSpec
      */
-    def setupContextSpec() { }
+    def runBefore() { }
 
 }

@@ -1,6 +1,6 @@
-package io.github.augustoerico.api.loader
+package io.github.augustoerico.api.utils.loader
 
-import io.github.augustoerico.api.fixture.Fixture
+import io.github.augustoerico.api.utils.fixture.Fixture
 import io.github.augustoerico.config.Env
 import io.github.augustoerico.models.Expense
 import io.vertx.core.Vertx

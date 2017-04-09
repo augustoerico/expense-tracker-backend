@@ -1,4 +1,4 @@
-package io.github.augustoerico.api.loader
+package io.github.augustoerico.api.utils.loader
 
 import io.github.augustoerico.config.Env
 import io.github.augustoerico.db.Repository
@@ -38,6 +38,7 @@ class Loader {
     def load() {
         def atomic = new AtomicInteger()
         def async = new AsyncConditions()
+
         items.collect {
             Repository.create(vertx).client.insert(collection, it) { Future future ->
 

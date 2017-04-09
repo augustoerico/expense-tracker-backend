@@ -15,7 +15,7 @@ class Env {
     }
 
     static appUrl() {
-        "http://${address()}:${port()}"
+        System.getenv().APP_URL ?: "http://${address()}:${port()}"
     }
 
     /**
