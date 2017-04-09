@@ -14,7 +14,7 @@ This is the backend application for the project Expense Tracker. Refer to [Expen
 
 - [ ] use JWT with expiration
 - [ ] return roles on `sign_in`
-- [ ] running tests with ```bash ./gradlew build``` breaks; the tests run smoothly on IDE environment, though
+- [ ] running tests with ```./gradlew test``` breaks; the tests run smoothly on IDE environment, though
 - [ ] remove `/admin` routes; return data based on authenticated user permissions
 
 ## API
