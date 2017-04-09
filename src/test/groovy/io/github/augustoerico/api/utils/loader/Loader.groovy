@@ -1,4 +1,4 @@
-package io.github.augustoerico.api.loader
+package io.github.augustoerico.api.utils.loader
 
 import io.github.augustoerico.config.Env
 import io.github.augustoerico.db.Repository

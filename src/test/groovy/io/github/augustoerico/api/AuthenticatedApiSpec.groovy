@@ -7,7 +7,7 @@ abstract class AuthenticatedApiSpec extends ApiSpec {
             'cm1pc3Npb25zIjpbInJlZ3VsYXIiXSwiaWF0IjoxNDkxNjY1MzM2fQ==.aQpKRgaws_CKBoKmJ2O6JphpzkUcRuYWRsda_A_4QrM='
 
     @Override
-    def setupContextSpec() {
+    def runBefore() {
         restClient.setHeaders([Authorization: TOKEN])
     }
 

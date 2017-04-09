@@ -1,4 +1,4 @@
-package io.github.augustoerico.api.fixture
+package io.github.augustoerico.api.utils.fixture
 
 class Fixture {
 
